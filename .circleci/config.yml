@@ -20,7 +20,16 @@ jobs:
            command: gradle jar
         - store_artifacts:
            path: build/libs
-           destination: prefix     
+           destination: prefix  
+  dockerize:
+    machine: true
+    steps:
+      - checkout
+      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
+      - run: docker build -t $DOCKER_USER/app:$CIRCLE_SHA1 .
+      - run: docker tag $DOCKER_USER/app:$CIRCLE_SHA1 $DOCKER_USER/app:latest
+      - run: docker push $DOCKER_USER/app:$CIRCLE_SHA1
+      - run: docker push $DOCKER_USER/app:latest   
 
 workflows:
   version: 2
@@ -30,4 +39,6 @@ workflows:
       - package:
           requires:
             - test  
-    
+      - dockerize:
+          requires:
+            - package
