@@ -28,7 +28,7 @@ workflows:
    workflow_exercise:
     jobs:
      - test
-     - package
+     - package:
          requires:
           - test  
     
