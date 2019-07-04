@@ -23,11 +23,11 @@ jobs:
            destination: prefix     
 
 workflows:
- version: 2.0
- workflow_exercise:
+  version: 2.0
+  workflow_exercise:
     jobs:
-     - test
-     - package:
-         requires:
-          - test  
+      - test
+      - package:
+          requires:
+            - test  
     
