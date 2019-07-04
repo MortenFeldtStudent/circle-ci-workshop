@@ -6,6 +6,6 @@ jobs:
     steps:
 	- checkout:
         - run:
-          name: Gradle Test
-          command: gradle test
+           name: Gradle Test
+           command: gradle test
             
