@@ -23,6 +23,7 @@ jobs:
            destination: prefix     
 
 workflows:
+  version: 2
   workflow_exercise:
     jobs:
       - test
